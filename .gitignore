@@ -1,0 +1,16 @@
+*~
+.DS_Store
+.idea
+build
+*.pyc
+.pytest_cache
+.mypy_cache
+.ipynb_checkpoints
+.libs
+
+venv_setup.sh
+venv_local
+*/.gitignore
+
+venv
+
