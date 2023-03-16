@@ -10,7 +10,7 @@ docker run -it --rm -p 10000:8888 -v "${PWD}":/home/jovyan/work jupyter/scipy-no
 The use of the `-v` flag in the command mounts the current working directory on the host (${PWD} in the example command) 
 as /home/jovyan/work in the container. The server logs appear in the terminal.
 
-Visiting <code>http://<hostname>:10000/?token=<token></code> in a browser loads JupyterLab.
+Visiting `http://<hostname>:10000/?token=<token>` in a browser loads JupyterLab.
 
 Due to the usage of the flag `--rm` Docker automatically cleans up the container and removes the file system 
 when the container exits, but any changes made to the `~/work` directory and its files in the container will 
