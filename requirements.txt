@@ -1,0 +1,2 @@
+whylogs==1.1.31
+fugue[sql,notebook]==0.8.1
