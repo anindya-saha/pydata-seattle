@@ -23,6 +23,4 @@ USER ${NB_UID}
 
 WORKDIR "${HOME}"
 
-RUN aws s3 cp s3://addemo23/ addemo23/ --recursive
-
 CMD ["start-notebook.sh"]
