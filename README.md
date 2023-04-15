@@ -21,7 +21,16 @@ remain intact on the host. The `-it` flag allocates pseudo-TTY.
 You can also build and run the Docker container locally.
 
 ```
+export DOCKER_DEFAULT_PLATFORM=linux/amd64
+export AWS_ACCESS_KEY_ID=<provided during demo>
+export AWS_SECRET_ACCESS_KEY=<provided during demo>
+
 docker build -t pydata-seattle:1.0 -f Dockerfile .
-docker run -it --rm -p 8888:8888 -v "${PWD}":/home/jovyan/work pydata-seattle:1.0
+docker run -it --env GRANT_SUDO=yes --env AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} --env AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} --rm -p 8888:8888 -v "${PWD}":/home/jovyan/work pydata-seattle:1.0
 ```
+Copy over the data file to S3 bukcket
+aws s3 cp addemo23/ s3://addemo23/ --recursive
+
+Download file from S3 bucket
+aws s3 cp s3://addemo23/ addemo23/ --recursive --dryrun
 
