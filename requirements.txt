@@ -1,3 +1,7 @@
 whylogs==1.1.31
 pybars3==0.9.7
 fugue[sql,notebook]==0.8.1
+lightgbm==3.3.2
+shap==0.41.0
+statsforecast==1.2.1
+plotly==5.10.0
