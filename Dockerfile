@@ -19,8 +19,10 @@ COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt && \
     rm requirements.txt
 
+RUN chmod -R 777 /opt/conda/lib/python3.10/site-packages/whylogs/viz/html/
+
+CMD ["start-notebook.sh"]
+
 USER ${NB_UID}
 
 WORKDIR "${HOME}"
-
-CMD ["start-notebook.sh"]

@@ -14,10 +14,17 @@ export DOCKER_DEFAULT_PLATFORM=linux/amd64
 export AWS_ACCESS_KEY_ID=<provided during demo>
 export AWS_SECRET_ACCESS_KEY=<provided during demo>
 
-docker run -it --env GRANT_SUDO=yes --env AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} --env AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} --rm -p 8888:8888 -v "${PWD}":/home/jovyan/work anindyas/pydata-seattle:1.0
+docker run -it --env GRANT_SUDO=yes --user root --env AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} --env AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} --rm -p 8888:8888 -v "${PWD}":/home/jovyan/work anindyas/pydata-seattle:1.0
 ```
+If you also run Ray, the use
+```
+docker run -it --shm-size=10gb --env GRANT_SUDO=yes --user root --env AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} --env AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} --rm -p 8888:8888 -p 8265:8265 -v "${PWD}":/home/jovyan/work anindyas/pydata-seattle:1.0
+```
+
 The use of the `-v` flag in the command mounts the current working directory on the host (${PWD} in the command) 
 as /home/jovyan/work in the container. The server logs appear in the terminal.
+
+Using `--user root` will spawn the jupyter notebook with jovyan having root privileges.
 
 Due to the usage of the flag `--rm` Docker automatically cleans up the container and removes the file system 
 when the container exits, but any changes made to the `~/work` directory and its files in the container will 
