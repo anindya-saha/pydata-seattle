@@ -1,6 +1,5 @@
 whylogs==1.1.31
 pybars3==0.9.7
-ray[default]==2.3.1
 fugue[sql,notebook,dask]==0.8.1
 lightgbm==3.3.2
 shap==0.41.0
