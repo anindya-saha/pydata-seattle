@@ -101,14 +101,14 @@ def extract_profiles(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame]:
     return preds_df, features_df
 
 
-class AutoARIMADetector:
+class MSTLDetector:
     _models: List[Any]
     _metric: str
     _level: List[float]
 
     @property
     def name(self) -> str:
-        return "AutoARIMA" + self._metric.split("/")[-1]
+        return "MSTL" + self._metric.split("/")[-1]
 
     def __init__(
         self,
@@ -117,7 +117,7 @@ class AutoARIMADetector:
         level: float,
     ):
         self._models = [
-            statsFModels.AutoARIMA(season_length=season, approximation=True)
+            statsFModels.MSTL(season_length=season, trend_forecaster=statsFModels.AutoARIMA())
         ]
         self._metric = metric
         self._level = [level]
@@ -151,5 +151,5 @@ class AutoARIMADetector:
             return []
 
         return df[
-            (df.y > df["AutoARIMA-hi-99.9"]) | (df.y < df["AutoARIMA-lo-99.9"])
+            (df.y > df["MSTL-hi-99.9"]) | (df.y < df["MSTL-lo-99.9"])
         ].index.tolist()
