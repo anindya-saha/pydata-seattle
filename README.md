@@ -14,7 +14,7 @@ The data files needed are also loaded into the docker image.
 ```
 export DOCKER_DEFAULT_PLATFORM=linux/amd64
 
-docker run -it --env GRANT_SUDO=yes --user root --rm -p 8888:8888 pydata-seattle:2.0
+docker run -it --env GRANT_SUDO=yes --user root --rm -p 8888:8888 anindyas/pydata-seattle:2.0
 ```
 
 Using `--user root` will spawn the jupyter notebook with jovyan having root privileges.
