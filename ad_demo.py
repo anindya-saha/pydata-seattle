@@ -1,11 +1,12 @@
+import json
 import datetime
-from collections import defaultdict
-from dataclasses import dataclass
 from typing import Any
 from typing import Dict
 from typing import List
 from typing import Tuple
 from typing import Union
+from collections import defaultdict
+from dataclasses import dataclass
 
 import numpy as np
 import pandas as pd
@@ -153,3 +154,20 @@ class MSTLDetector:
         return df[
             (df.y > df["MSTL-hi-99.9"]) | (df.y < df["MSTL-lo-99.9"])
         ].index.tolist()
+
+
+def fugue_find_anomalies(daily_profile_df: pd.DataFrame, detectors: List[Any]) -> pd.DataFrame:
+    model_name = next(iter(daily_profile_df.model_name.unique()))
+
+    # extract predictions and feature profiles
+    preds_df, features_df = extract_profiles(daily_profile_df)
+
+    # find anomalies with all detectors
+    anomalies: Dict[str, List[datetime.datetime]] = {}
+    for detector in detectors:
+        anomalies[detector.name] = detector.find_anomalies(detector.score(preds_df))
+
+    return pd.DataFrame({
+        "model_name": model_name,
+        "anomalies": [json.dumps(anomalies, default=str)]
+    }, )
