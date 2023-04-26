@@ -14,10 +14,10 @@ The data files needed are also loaded into the docker image.
 ```
 export DOCKER_DEFAULT_PLATFORM=linux/amd64
 
-docker run -it --env GRANT_SUDO=yes --user root --rm -p 8888:8888 anindyas/pydata-seattle:2.0
+docker run -it --rm -p 8888:8888 anindyas/pydata-seattle:2.1
 ```
 
-Using `--user root` will spawn the jupyter notebook with jovyan having root privileges.
+Using `--env GRANT_SUDO=yes --user root` will spawn the jupyter notebook with jovyan having root privileges.
 
 Due to the usage of the flag `--rm` Docker automatically cleans up the container and removes the file system 
 when the container exits.

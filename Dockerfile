@@ -30,4 +30,4 @@ COPY Distributed-profiling.ipynb .
 COPY ad_demo.py .
 COPY README.md .
 
-CMD ["start-notebook.sh"]
+CMD ["start-notebook.sh", "--no-browser", "--allow-root", "--NotebookApp.token=''", "--NotebookApp.password=''", "--NotebookApp.allow_origin='*'"]
