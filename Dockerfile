@@ -23,17 +23,11 @@ USER ${NB_UID}
 
 WORKDIR "${HOME}"
 
-# RUN git clone https://github.com/anindya-saha/pydata-seattle.git
-
 COPY addemo23 addemo23/
 COPY images/ images/
 COPY Anomaly-detection.ipynb .
 COPY Distributed-profiling.ipynb .
 COPY ad_demo.py .
 COPY README.md .
-
-#USER root
-
-#USER ${NB_UID}
 
 CMD ["start-notebook.sh"]
