@@ -5,3 +5,4 @@ lightgbm==3.3.2
 shap==0.41.0
 statsforecast==1.2.1
 plotly==5.10.0
+s3fs==2023.4.0
