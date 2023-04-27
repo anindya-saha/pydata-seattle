@@ -23,16 +23,8 @@ USER ${NB_UID}
 
 WORKDIR "${HOME}"
 
-#COPY addemo23/demo_raw_data_20.parquet addemo23/demo_raw_data_20.parquet
-#COPY addemo23/daily_profile.parquet addemo23/daily_profile.parquet
-#COPY images/ images/
-#COPY Anomaly-detection.ipynb .
-#COPY Distributed-profiling.ipynb .
-#COPY ad_demo.py .
-#COPY README.md .
-
 COPY . .
 
 # CMD ["start-notebook.sh", "--no-browser", "--allow-root", "--NotebookApp.token=''", "--NotebookApp.password=''", "--NotebookApp.allow_origin='*'"]
 
-CMD ["start-notebook.sh"]
+CMD ["start-notebook.sh", "--NotebookApp.open_browser=False"]
