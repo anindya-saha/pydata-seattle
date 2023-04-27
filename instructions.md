@@ -1,9 +1,3 @@
-Dashboard Ideas
-https://solomonkidd.com/ai-portal
-
-
-
-
 # Anomaly Detection at Scale with Whylogs
 
 Welcome to the Anomaly Detection Demo!
@@ -37,34 +31,45 @@ export AWS_ACCESS_KEY_ID=
 export AWS_SECRET_ACCESS_KEY=
 
 export VERSION=2.4
-docker build -t pydata-seattle:"${VERSION}" -f Dockerfile .
+
+docker build -t pydata-seattle:${VERSION} -f Dockerfile .
 
 docker tag pydata-seattle:${VERSION} anindyas/pydata-seattle:${VERSION}
 
 docker push anindyas/pydata-seattle:${VERSION}
 
-docker run -it --rm -p 8888:8888 -v "${PWD}":/home/jovyan/work pydata-seattle:"${VERSION}"
 
-docker run -it --env GRANT_SUDO=yes --user root --rm -p 8888:8888 -v "${PWD}":/home/jovyan/work pydata-seattle:2.3
+docker run -it --env GRANT_SUDO=yes --user root --rm -p 8888:8888 pydata-seattle:${VERSION}
+
+docker run -it --rm -p 8888:8888 -v "${PWD}":/home/jovyan/work pydata-seattle:${VERSION}
+
+docker run -it --env GRANT_SUDO=yes --user root --rm -p 8888:8888 -v "${PWD}":/home/jovyan/work pydata-seattle:${VERSION}
 
 docker system prune --all
 
-#docker run -it --env GRANT_SUDO=yes --user root --env AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} --env AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} --rm -p 8888:8888 -v "${PWD}":/home/jovyan/work pydata-seattle:1.0
-#docker run -it --shm-size=10gb --env GRANT_SUDO=yes --user root --env AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} --env AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} --rm -p 8888:8888 -p 8265:8265 -v "${PWD}":/home/jovyan/work pydata-seattle:1.0
+docker run -it --env GRANT_SUDO=yes --user root --rm -p 8888:8888 -v "${PWD}":/home/jovyan/work pydata-seattle:${VERSION}
+
+docker run -it --rm -p 8888:8888 -v "${PWD}":/home/jovyan/work pydata-seattle:${VERSION}
+
+docker run -it --rm -p 8888:8888 -v "${PWD}":/home/jovyan/work anindyas/pydata-seattle:${VERSION}
+
+#docker run -it --env GRANT_SUDO=yes --user root --env AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} --env AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} --rm -p 8888:8888 -v "${PWD}":/home/jovyan/work pydata-seattle:${VERSION}
+
+# for runing with ray
+#docker run -it --shm-size=10gb --env GRANT_SUDO=yes --user root --env AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} --env AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} --rm -p 8888:8888 -p 8265:8265 -v "${PWD}":/home/jovyan/work pydata-seattle:${VERSION}
 
 ```
-docker run -it --env GRANT_SUDO=yes --user root --rm -p 8888:8888 pydata-seattle:2.0
 
-# Copy over the data file to S3 bukcket
-# aws s3 cp addemo23/ s3://addemo23/ --recursive
 
-Download file from S3 bucket
+### Copy over the data file to S3 bukcket
+```
+aws s3 cp addemo23/ s3://addemo23/ --recursive
+```
+
+### Download file from S3 bucket
+```
 aws s3 cp s3://addemo23/ work/addemo23/ --recursive
+```
 
-For local development
-docker run -it --env GRANT_SUDO=yes --user root --rm -p 8888:8888 -v "${PWD}":/home/jovyan/work pydata-seattle:2.0
-
-docker run -it --rm -p 8888:8888 -v "${PWD}":/home/jovyan/work anindyas/pydata-seattle:2.0
-
-docker run -it --env GRANT_SUDO=yes --user root --rm -p 8888:8888 -v "${PWD}":/home/jovyan/work pydata-seattle:2.3
-
+Dashboard Ideas  
+https://solomonkidd.com/ai-portal
