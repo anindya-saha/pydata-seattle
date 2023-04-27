@@ -39,19 +39,15 @@ docker tag pydata-seattle:${VERSION} anindyas/pydata-seattle:${VERSION}
 docker push anindyas/pydata-seattle:${VERSION}
 
 
-docker run -it --env GRANT_SUDO=yes --user root --rm -p 8888:8888 pydata-seattle:${VERSION}
-
-docker run -it --rm -p 8888:8888 -v "${PWD}":/home/jovyan/work pydata-seattle:${VERSION}
-
-docker run -it --env GRANT_SUDO=yes --user root --rm -p 8888:8888 -v "${PWD}":/home/jovyan/work pydata-seattle:${VERSION}
-
 docker system prune --all
-
-docker run -it --env GRANT_SUDO=yes --user root --rm -p 8888:8888 -v "${PWD}":/home/jovyan/work pydata-seattle:${VERSION}
 
 docker run -it --rm -p 8888:8888 -v "${PWD}":/home/jovyan/work pydata-seattle:${VERSION}
 
 docker run -it --rm -p 8888:8888 -v "${PWD}":/home/jovyan/work anindyas/pydata-seattle:${VERSION}
+
+docker run -it --env GRANT_SUDO=yes --user root --rm -p 8888:8888 pydata-seattle:${VERSION}
+
+docker run -it --env GRANT_SUDO=yes --user root --rm -p 8888:8888 -v "${PWD}":/home/jovyan/work pydata-seattle:${VERSION}
 
 #docker run -it --env GRANT_SUDO=yes --user root --env AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} --env AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} --rm -p 8888:8888 -v "${PWD}":/home/jovyan/work pydata-seattle:${VERSION}
 
